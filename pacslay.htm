@@ -1,0 +1,173 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Pac &amp; Slay</title>
+	<meta name="description" content="Pac &amp; Slay">
+	<meta name="author" content="Olaf Nowacki">
+
+	<script src="js/phaser/phaser.min.js" type="text/javascript"></script>
+	
+	<script src="js/init.js" type="text/javascript"></script>
+	<script src="js/assets.js" type="text/javascript"></script>
+	<script src="js/render.js" type="text/javascript"></script>
+	
+	<script src="js/monsters.js" type="text/javascript"></script>
+	<script src="js/fight.js" type="text/javascript"></script>
+	<script src="js/levelup.js" type="text/javascript"></script>
+
+	<!--link rel="stylesheet" href="css/styles.css"-->
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+	<script type="text/javascript">		
+		var game = new Phaser.Game(576, 384, Phaser.AUTO, 'pacslay', {init: init, preload: preload, create: create, update: update, render: render }, false, false);
+			
+		var cursors, map, player, dots, layer, fx;
+		var exp = 0;
+		var monsters = 0;
+		var levelUp = false;
+
+		function create() {
+			map = game.add.tilemap('map');
+			map.addTilesetImage('dungeon');
+			map.setCollisionBetween(1, 8, true, 'walls');
+			layer = map.createLayer('walls');
+			layer.resizeWorld();
+			layer.fixedToCamera = true;
+			layer.debug = true;
+			
+			game.physics.startSystem(Phaser.Physics.ARCADE);
+			
+			fx = game.add.audio('sfx');
+			//fx.allowMultiple = true;
+			fx.addMarker('hit', 3, 0.5);
+			fx.addMarker('die', 8, 0.5);
+			fx.addMarker('dot', 9, 0.1, 0.3);
+			fx.addMarker('miss', 19, 0.3);
+			
+			dots = game.add.group();
+			dots.enableBody = true;
+			remainingDots = map.createFromTiles(9, null, 'dot', 'walls', dots);
+			
+			group = game.add.group();
+			
+			// link
+			player = group.create(48, 48, 'link');
+			player.name = "link";
+			player.anchor.set(0.5);
+			game.physics.arcade.enable(player);
+			player.body.setSize(20, 10, 0, 10);
+			player.animations.add('up', [0, 1], 10, true);
+			player.animations.add('right', [2, 3], 10, true);
+			player.animations.add('left', [4, 5], 10, true);
+			player.animations.add('down', [6, 7], 10, true);
+			
+			player.exp = 0;
+			player.nextLevel = 50;
+			player.health = 12;
+			player.defense = 2;
+			player.skill = 2;
+			player.attackRate = 500;
+			player.attackReady = true;
+			player.damageRand = 3;
+			player.damageMod = 0;
+			player.speed = 150;
+			
+			monsters = game.add.group();
+			monsters.name = "monsters";
+			for (var i = 0; i < 12; i++) {
+				monsters.add(new Monster(game, 144 + i * 64, 144 + i * 64, 'skeleton', monsters));
+			}
+			
+			//group.sort();
+			
+			game.camera.follow(player);
+			game.camera.deadzone = new Phaser.Rectangle(96, 96, 192, 84);
+			
+			cursors = game.input.keyboard.createCursorKeys();
+		}
+
+		function update() {
+			monsters.forEach(moveMonsters, this, true);
+			
+			game.physics.arcade.collide(player, layer);
+			game.physics.arcade.collide(monsters, layer, rndDirection);
+			game.physics.arcade.collide(monsters, monsters, rndDirection);
+			game.physics.arcade.overlap(player, dots, collectDot, null, this);
+			game.physics.arcade.collide(player, monsters, tryAttack);
+			
+			//game.physics.arcade.collide(monsters, player, tryAttack);
+			
+			//monsters.forEach(moveToPlayer, this, true);
+			
+			player.body.velocity.x = 0;
+			player.body.velocity.y = 0;
+
+		    if (cursors.left.isDown) {
+				move(player, "left", "left");
+		    } else if (cursors.right.isDown) {
+				move(player, "right", "right");
+			} else if (cursors.up.isDown) {
+				move(player, "up", "up");
+			} else if (cursors.down.isDown) {
+				move(player, "down", "down");
+			} else {
+		        player.animations.stop();
+		    }
+		
+			//group.sort('y', Phaser.Group.SORT_ASCENDING);
+			checkLevelUp();
+		}
+		
+		function moveMonsters(sprite) {
+			sprite.body.velocity.x = 0;
+			sprite.body.velocity.y = 0;
+			move(sprite, sprite.direction);
+		}
+		
+		function move(sprite, direction, anim) {
+			if (direction === "up") {
+				sprite.body.velocity.y = -sprite.speed;
+			} else if (direction === "down") {
+				sprite.body.velocity.y = sprite.speed;
+			} else if (direction === "left") {
+				sprite.body.velocity.x = -sprite.speed;
+			} else if (direction === "right") {
+				sprite.body.velocity.x = sprite.speed;
+			}
+					
+			if (typeof anim != 'undefined') {
+				sprite.animations.play(anim);
+			}
+		}
+		
+		function rndDirection (sprite) {
+			var directions = ["up", "down", "left", "right"];
+			var index = directions.indexOf(sprite.direction);
+			if (index > -1) {
+				directions.splice(index, 1);
+			}
+			sprite.direction = game.rnd.pick(directions);
+		}
+		
+		function moveToPlayer(monster) {
+			game.physics.arcade.moveToObject(monster, player);
+		}
+		
+		function collectDot(player, dot) {
+			fx.play("dot");
+			dot.destroy();
+			player.exp += 1;
+		}
+		
+		
+
+	</script>
+</body>
+</html>

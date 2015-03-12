@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="dungeon" tilewidth="32" tileheight="32">
+  <image source="assets/dungeon.png" width="128" height="128"/>
+ </tileset>
+ <layer name="walls" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJy9lkuKxDAMRBOCF3P/Cw+zaBDFq5KUhlmY0JLbtlQf+76u65hxL+JubrfO3/gx4yziaR2Xq/vr2XQ/it8ldiR2JOa+b8/t8imW9k/YEI66jsbcvGdY/wM59/sOc+hMR/avGNaYw8/h69af8K/GngXeXZz6Tf1XLEkPTt8H/q99+Xwd/l2N3ZhyIfHfYelqnHCEYon/Ez+YaHyqG8XL+XanA9XQG/+b6J18YVOvYp14u9G94xLNJ/1X3U81UeNTvySvc1gmLUz7Qn2g+ic4TvObe0M9kd4rqt0J751v0P6KnXv3vM2RDyf+1/UmbyKXm/B349vbHPmu4z/hr/Mc5uSbdJ7E/1Q/9TjlnC71HKR/4imdeXsHOXzSOtTLzxtCvUX3T+8Wwt/xubtzCLfOt7r6O50lfyJ8lZt0/yqu3/iy9q7G0vtPcaX6E67dvUTzHL7TGr/tj6vvv8Yv7FwXzw==
+  </data>
+ </layer>
+</map>
