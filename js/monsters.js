@@ -2,7 +2,7 @@ Monster = function (game, x, y, name) {
 	Phaser.Sprite.call(this, game, x, y, name);
 	game.physics.arcade.enable(this);
 	this.body.enable = true;
-	this.body.setSize(20, 15, 0, 15);
+	this.body.setSize(32, 32, 0, 8);
 	this.animations.add('idle', [0, 1, 2, 3, 4, 5, 6, 3, 2], 10, true);
 	this.animations.play('idle');
 	this.name = name;
@@ -27,7 +27,7 @@ Monster.prototype.damage = function(amount) {
         this.health -= amount;
         if (this.health <= 0) {
 			fx.play("die");
-            this.destroy();
+            this.kill();
         }
     }
     return this;

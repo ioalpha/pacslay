@@ -1,6 +1,6 @@
 function tryAttack(defender, attacker) {
 	if (attacker.attackReady == true) {
-		game.debug.text(attacker.name + " attacks " + defender.name, 400, 40 );
+		log(attacker.name + " attacks " + defender.name);
 		attacker.attackReady = false;
 		game.time.events.add(attacker.attackRate, setAttackReady, this, attacker);
 		

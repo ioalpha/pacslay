@@ -38,8 +38,7 @@ function createMap() {
 function createLayer() {
 	layer = map.createLayer('walls');
 	layer.resizeWorld();
-	layer.fixedToCamera = true;
-	//layer.debug = true;	
+	layer.fixedToCamera = true;	
 }
 
 function createSounds() {
@@ -58,25 +57,9 @@ function createDots() {
 }
 
 function createPlayer() {
-	player = group.create(48, 48, 'link');
-	player.name = "link";
-	player.anchor.set(0.5);
-	game.physics.arcade.enable(player);
-	player.body.setSize(20, 10, 0, 10);
-	player.animations.add('up', [0, 1], 10, true);
-	player.animations.add('right', [2, 3], 10, true);
-	player.animations.add('left', [4, 5], 10, true);
-	player.animations.add('down', [6, 7], 10, true);
-	player.exp = 0;
-	player.nextLevel = 50;
-	player.health = 12;
-	player.defense = 2;
-	player.skill = 2;
-	player.attackRate = 500;
-	player.attackReady = true;
-	player.damageRand = 3;
-	player.damageMod = 0;
-	player.speed = 150;
+	group = game.add.group();
+	player = new Player(game, 48, 48, "link", group);
+	group.add(player);
 }
 
 function createMonsters() {

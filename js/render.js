@@ -9,11 +9,14 @@ function render() {
 	
 	game.debug.text("next Level: " + (player.nextLevel - player.exp), 20, 40);
 	//game.debug.bodyInfo(monsters.getAt(0), 20, 40);
-	game.debug.body(monsters);
+
+	
 	for (var i = 0; i < monsters.total; i++) {
 		var m = monsters.getAt(i);
 		//game.debug.text(m.name, 20, i * 20 + 40);
 		game.debug.body(m);
 	}
+	
+	
 	game.debug.body(player);
 }
