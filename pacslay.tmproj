@@ -10,7 +10,9 @@
 			<key>filename</key>
 			<string>pacslay.htm</string>
 			<key>lastUsed</key>
-			<date>2015-03-10T17:32:55Z</date>
+			<date>2015-03-12T16:03:01Z</date>
+			<key>selected</key>
+			<true/>
 		</dict>
 		<dict>
 			<key>children</key>
@@ -19,19 +21,19 @@
 					<key>filename</key>
 					<string>js/init.js</string>
 					<key>lastUsed</key>
-					<date>2015-03-10T17:25:10Z</date>
+					<date>2015-03-12T15:44:18Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>js/assets.js</string>
 					<key>lastUsed</key>
-					<date>2015-03-10T17:32:55Z</date>
+					<date>2015-03-12T16:03:01Z</date>
 				</dict>
 				<dict>
 					<key>filename</key>
 					<string>js/render.js</string>
 					<key>lastUsed</key>
-					<date>2015-03-10T17:19:48Z</date>
+					<date>2015-03-12T15:44:12Z</date>
 				</dict>
 			</array>
 			<key>expanded</key>
@@ -43,13 +45,13 @@
 			<key>filename</key>
 			<string>js/monsters.js</string>
 			<key>lastUsed</key>
-			<date>2015-03-10T16:21:19Z</date>
+			<date>2015-03-12T15:31:30Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
 			<string>js/fight.js</string>
-			<key>selected</key>
-			<true/>
+			<key>lastUsed</key>
+			<date>2015-03-12T15:31:26Z</date>
 		</dict>
 		<dict>
 			<key>filename</key>
@@ -67,9 +69,23 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>3</integer>
+				<integer>20</integer>
 				<key>line</key>
-				<integer>12</integer>
+				<integer>2</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>js/fight.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>26</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -125,30 +141,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>3</integer>
 				<key>line</key>
-				<integer>43</integer>
+				<integer>29</integer>
 			</dict>
-			<key>columnSelection</key>
-			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>27</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>35</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>43</integer>
-			</dict>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -156,6 +156,7 @@
 		<string>pacslay.htm</string>
 		<string>js/assets.js</string>
 		<string>js/monsters.js</string>
+		<string>js/fight.js</string>
 		<string>js/levelup.js</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>

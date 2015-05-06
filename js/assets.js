@@ -39,7 +39,7 @@ function createLayer() {
 	layer = map.createLayer('walls');
 	layer.resizeWorld();
 	layer.fixedToCamera = true;
-	layer.debug = true;	
+	//layer.debug = true;	
 }
 
 function createSounds() {
